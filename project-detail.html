@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Custom styles for project detail page -->
+  <style>
+    .detail-container {
+      max-width: 900px;
+      margin: 8rem auto 4rem;
+      padding: 0 2rem;
+    }
+    .back-btn-wrapper {
+      margin-bottom: 2rem;
+    }
+    .project-header-block {
+      margin-bottom: 3rem;
+    }
+    .project-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .meta-box {
+      padding: 1.5rem;
+    }
+    .meta-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    .meta-value {
+      font-family: var(--font-header);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .project-banner-wrapper {
+      position: relative;
+      height: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border-color);
+    }
+    .project-banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .detail-section {
+      margin-bottom: 2.5rem;
+    }
+    .detail-section h3 {
+      font-family: var(--font-header);
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .detail-section h3 i {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+    }
+    .detail-section p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    .features-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .features-list li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .features-list li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 2px;
+      color: var(--primary-color);
+      font-size: 1rem;
+    }
+    @media (max-width: 768px) {
+      .project-banner-wrapper {
+        height: 250px;
+      }
+      .detail-container {
+        margin-top: 6rem;
+      }
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <!-- Decorative Background Gradients -->
+  <div class="bg-gradient bg-gradient-1"></div>
+  <div class="bg-gradient bg-gradient-2"></div>
+  <div class="bg-gradient bg-gradient-3"></div>
+
+  <!-- Navigation Bar -->
+  <header class="glass-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-text">Developer.dev</a>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light/dark theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="detail-container">
+    <div class="back-btn-wrapper">
+      <a href="index.html#projects" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Projects
+      </a>
+    </div>
+
+    <div id="project-detail-content">
+      <!-- Dynamically populated -->
+      <p>Loading project details...</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; <span id="year"></span> <span id="footer-name">Developer</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Script for Project Details Page Logic -->
+  <script src="data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. 8-bit Sound Synthesizer
+      let audioCtx = null;
+
+      function getAudioContext() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioCtx;
+      }
+
+      function playCoinSound() {
+        try {
+          const ctx = getAudioContext();
+          if (ctx.state === 'suspended') ctx.resume();
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(523.25, now);
+          osc.frequency.setValueAtTime(880, now + 0.08);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } catch (e) {}
+      }
+
+      function playSelectSound() {
+        try {
+          const ctx = getAudioContext();
+          if (ctx.state === 'suspended') ctx.resume();
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(150, now);
+          osc.frequency.exponentialRampToValueAtTime(70, now + 0.04);
+          gain.gain.setValueAtTime(0.03, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.04);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.04);
+        } catch (e) {}
+      }
+
+      function playLevelUpSound() {
+        try {
+          const ctx = getAudioContext();
+          if (ctx.state === 'suspended') ctx.resume();
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(261.63, now);
+          osc.frequency.setValueAtTime(329.63, now + 0.06);
+          osc.frequency.setValueAtTime(392.00, now + 0.12);
+          osc.frequency.setValueAtTime(523.25, now + 0.18);
+          osc.frequency.setValueAtTime(659.25, now + 0.24);
+          osc.frequency.setValueAtTime(783.99, now + 0.30);
+          osc.frequency.setValueAtTime(1046.50, now + 0.36);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.6);
+        } catch (e) {}
+      }
+
+      // Audio delegation
+      document.body.addEventListener('click', (e) => {
+        const target = e.target.closest('.btn, .logo, .social-icon, .theme-toggle-btn');
+        if (target) {
+          playCoinSound();
+        }
+      });
+
+      document.body.addEventListener('mouseover', (e) => {
+        const target = e.target.closest('.btn, .logo, .social-icon, .theme-toggle-btn');
+        if (target) {
+          if (!window.lastHoverSoundTime || Date.now() - window.lastHoverSoundTime > 80) {
+            playSelectSound();
+            window.lastHoverSoundTime = Date.now();
+          }
+        }
+      });
+
+      // 2. Theme handler
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'light') {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        body.classList.add('dark-theme');
+        body.classList.remove('light-theme');
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+
+      themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-theme')) {
+          body.classList.remove('dark-theme');
+          body.classList.add('light-theme');
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+          localStorage.setItem('theme', 'light');
+        } else {
+          body.classList.remove('light-theme');
+          body.classList.add('dark-theme');
+          themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // 3. Fetch Project Data
+      const urlParams = new URLSearchParams(window.location.search);
+      const projectId = parseInt(urlParams.get('id'));
+
+      if (typeof portfolioData === 'undefined' || isNaN(projectId) || !portfolioData.projects[projectId]) {
+        document.getElementById('project-detail-content').innerHTML = `
+          <div class="glass-card text-center">
+            <h2>Project Not Found</h2>
+            <p>Sorry, we couldn't load the requested project details.</p>
+            <a href="index.html" class="btn btn-primary" style="margin-top: 1.5rem;">Return to Home</a>
+          </div>
+        `;
+        return;
+      }
+
+      const project = portfolioData.projects[projectId];
+      const data = portfolioData;
+
+      // Populate Header/Footer info
+      document.getElementById('logo-text').textContent = `${data.profile.name}.dev`;
+      document.getElementById('footer-name').textContent = data.profile.name;
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Render tags and features
+      const tagsHTML = project.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
+      const featuresHTML = project.details.features.map(f => `<li>${f}</li>`).join('');
+
+      document.title = `${project.title} - Project Details`;
+
+      document.getElementById('project-detail-content').innerHTML = `
+        <div class="project-header-block">
+          <div class="project-tags" style="margin-bottom: 1.5rem;">${tagsHTML}</div>
+          <h1 class="section-title" style="text-align: left; font-size: 1.6rem; margin-bottom: 1rem; text-transform: uppercase;">${project.title}</h1>
+          <p class="hero-description" style="max-width: 100%; margin-bottom: 0;">${project.description}</p>
+        </div>
+
+        <div class="project-meta-grid">
+          <div class="meta-box glass-card">
+            <span class="meta-title">Role / Position</span>
+            <span class="meta-value" style="font-size: 0.8rem;">${project.details.role}</span>
+          </div>
+          <div class="meta-box glass-card">
+            <span class="meta-title">Timeline</span>
+            <span class="meta-value" style="font-size: 0.8rem;">${project.details.timeline}</span>
+          </div>
+        </div>
+
+        <div class="project-banner-wrapper">
+          <img class="project-banner-img" src="${project.image}" alt="${project.title} Banner">
+          <div class="project-overlay" style="opacity: 0.2;"></div>
+        </div>
+
+        <div class="detail-section glass-card" style="margin-bottom: 2.5rem;">
+          <h3><i class="fas fa-file-alt"></i> Project Overview</h3>
+          <p>${project.details.overview}</p>
+        </div>
+
+        <div class="detail-section glass-card" style="margin-bottom: 2.5rem;">
+          <h3><i class="fas fa-star"></i> Key Features</h3>
+          <ul class="features-list">
+            ${featuresHTML}
+          </ul>
+        </div>
+
+        <div class="detail-section glass-card" style="margin-bottom: 2.5rem;">
+          <h3><i class="fas fa-exclamation-triangle"></i> Challenges & Solutions</h3>
+          <p>${project.details.challenges}</p>
+        </div>
+
+        <div class="detail-section glass-card" style="margin-bottom: 3rem;">
+          <h3><i class="fas fa-trophy"></i> Achievements & Metrics</h3>
+          <p>${project.details.achievements}</p>
+        </div>
+
+        <div class="hero-buttons" style="justify-content: flex-start; margin-bottom: 4rem;">
+          <a href="${project.liveLink}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt"></i> Visit Live Demo
+          </a>
+          <a href="${project.githubLink}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i> View Repository
+          </a>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

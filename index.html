@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Portfolio</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+  <!-- Decorative Background Gradients -->
+  <div class="bg-gradient bg-gradient-1"></div>
+  <div class="bg-gradient bg-gradient-2"></div>
+  <div class="bg-gradient bg-gradient-3"></div>
+
+  <!-- Navigation Bar -->
+  <header class="glass-navbar">
+    <div class="nav-container">
+      <a href="#" class="logo" id="logo-text">Developer.dev</a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light/dark theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <span class="hero-badge">Available for Work</span>
+          <h1 class="hero-greeting">Hi, I'm <span class="highlight-text" id="hero-name">Name</span></h1>
+          <h2 class="hero-subtitle">I'm a <span id="typed-text" class="typed-text"></span><span class="typed-cursor">■</span></h2>
+          <p class="hero-description" id="hero-bio">Loading description...</p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="#" id="resume-btn" class="btn btn-secondary" target="_blank">
+              <i class="fas fa-download"></i> Download CV
+            </a>
+          </div>
+          <div class="hero-socials" id="hero-socials">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+        <div class="hero-image-container">
+          <div class="image-wrapper">
+            <img src="" alt="Profile picture" id="profile-img" class="profile-img">
+            <div class="image-glow"></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <a href="#about" aria-label="Scroll to about section">
+          <i class="fas fa-chevron-down animate-bounce"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section reveal">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-subtitle">Biography</span>
+          <h2 class="section-title">About Me</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="about-grid">
+          <div class="about-text-card glass-card">
+            <p id="about-desc">Loading details...</p>
+          </div>
+          <div class="stats-container" id="stats-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section reveal">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-subtitle">My Stack</span>
+          <h2 class="section-title">Skills & Technologies</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="skills-tabs">
+          <button class="tab-btn active" data-category="all">All</button>
+          <button class="tab-btn" data-category="Frontend">Frontend</button>
+          <button class="tab-btn" data-category="Backend">Backend</button>
+          <button class="tab-btn" data-category="Tools">Tools</button>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section reveal">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-subtitle">Career Path</span>
+          <h2 class="section-title">Work Experience</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="timeline" id="timeline">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section reveal">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-subtitle">Recent Works</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="projects-grid" id="projects-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section reveal">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-subtitle">Let's Connect</span>
+          <h2 class="section-title">Get In Touch</h2>
+          <div class="title-underline"></div>
+        </div>
+        
+        <div class="contact-grid">
+          <div class="contact-info-card glass-card">
+            <h3>Let's collaborate!</h3>
+            <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <div class="contact-icon-box">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <span class="contact-label">Email Me</span>
+                  <a href="" id="contact-email" class="contact-value">email@example.com</a>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon-box">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <span class="contact-label">Location</span>
+                  <span class="contact-value">Remote / Global</span>
+                </div>
+              </div>
+            </div>
+            <div class="social-links-grid" id="contact-socials">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+          
+          <div class="contact-form-card glass-card">
+            <form id="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('Message sent successfully! (Demo submission)');">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="John Doe">
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Hey Alex, I'd love to collaborate on..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; <span id="year"></span> <span id="footer-name">Developer</span>. All rights reserved.</p>
+      <p class="footer-credit">Handcrafted with <i class="fas fa-heart text-red"></i> using HTML, CSS, & Vanilla JS.</p>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

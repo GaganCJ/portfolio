@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const data = portfolioData;
 
   // Header Logo & Footer Name
-  document.getElementById('logo-text').textContent = `${data.profile.name}.dev`;
+  document.getElementById('logo-text').textContent = `${data.profile.name}`;
   document.getElementById('footer-name').textContent = data.profile.name;
   document.getElementById('year').textContent = new Date().getFullYear();
 

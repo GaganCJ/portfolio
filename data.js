@@ -6,10 +6,10 @@ const portfolioData = {
     shortBio: "Result-driven Software Engineer with 6+ years of IT experience specializing in Core Java (8+) and the Spring Boot ecosystem.",
     resumeUrl: "#", // Add link to your resume/CV when ready
     socials: {
-      github: "https://github.com/", // Add your github link
-      linkedin: "https://linkedin.com/", // Add your linkedin link
+      github: "https://github.com/GaganCJ", // Add your github link
+      linkedin: "https://linkedin.com/gaganjchandra-29011998", // Add your linkedin link
       twitter: "https://twitter.com/", // Add your twitter link
-      email: "mailto:gagan.cj@cognizant.com"
+      email: "mailto:gaganjchandra2379@gmail.com"
     }
   },
   about: {
@@ -22,7 +22,7 @@ const portfolioData = {
   },
   skills: [
     // Languages
-    { name: "Java 8+", category: "Frontend", level: 95, icon: "fab fa-java" },
+    { name: "Java 8", category: "Frontend", level: 95, icon: "fab fa-java" },
     { name: "Python", category: "Frontend", level: 80, icon: "fab fa-python" },
     { name: "JavaScript", category: "Frontend", level: 75, icon: "fab fa-js" },
     { name: "SQL", category: "Frontend", level: 88, icon: "fas fa-database" },
